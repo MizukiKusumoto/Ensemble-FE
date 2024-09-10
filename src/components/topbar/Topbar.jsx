@@ -1,4 +1,4 @@
-import { Chat, Notifications, Search } from '@mui/icons-material';
+import { Search } from '@mui/icons-material';
 import React, { useContext } from 'react';
 import './Topbar.css';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,13 @@ export default function Topbar() {
         </div>
       </div>
       <div className='topbarRight'>
-        <div className='topbarIconItems'>
+        <div className="rectangle_border"> User:
+          Username</div>
+        <div className="rectangle_border2">latest login:
+          login date
+          login time
+        </div>
+        {/* <div className='topbarIconItems'>
           <div className='topbarIconItem'>
             <Chat />
             <span className='topbarIconBadge'>1</span>
@@ -46,7 +52,7 @@ export default function Topbar() {
               className='topbarImage'
             />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

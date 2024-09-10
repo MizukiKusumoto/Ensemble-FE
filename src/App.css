@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'CLEARVIEW FONT';
+    src: url('./CLEARVIEW FONT.TTF');
+}
+body {
+    font-family: 'CLEARVIEW FONT',sans-serif;
+}
