@@ -13,6 +13,8 @@ const initialState = {
     followings: [],
     isAdmin: true,
     desc: 'Hello World!',
+    loginDate:'2024/9/11',
+    loginTime:'16:34',
   },
   isFetching: false,
   error: false,

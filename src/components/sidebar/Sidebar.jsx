@@ -1,11 +1,9 @@
 import {
-  Bookmark,
+  AttachFile,
   Home,
   MessageRounded,
-  Notifications,
   Person,
   Search,
-  Settings,
 } from '@mui/icons-material';
 import React from 'react';
 import './Sidebar.css';
@@ -21,45 +19,45 @@ export default function Sidebar() {
           <li className='sidebarListItem'>
             <Home className='sidebarIcon' />
             <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
-              <span className='sidebarListItemText'>ホーム</span>
+              <span className='sidebarListItemText'>Home</span>
             </Link>
           </li>
           <li className='sidebarListItem'>
-            <Search className='sidebarIcon' />
-            <span className='sidebarListItemText'>検索</span>
+            <AttachFile className='sidebarIcon' />
+            <span className='sidebarListItemText'>Post</span>
           </li>
           <li className='sidebarListItem'>
-            <Notifications className='sidebarIcon' />
-            <span className='sidebarListItemText'>通知</span>
+            <Search className='sidebarIcon' />
+            <span className='sidebarListItemText'>Search</span>
           </li>
           <li className='sidebarListItem'>
             <MessageRounded className='sidebarIcon' />
-            <span className='sidebarListItemText'>メッセージ</span>
+            <span className='sidebarListItemText'>Message</span>
           </li>
-          <li className='sidebarListItem'>
+          {/* <li className='sidebarListItem'>
             <Bookmark className='sidebarIcon' />
             <span className='sidebarListItemText'>ブックマーク</span>
-          </li>
+          </li> */}
           <li className='sidebarListItem'>
             <Person className='sidebarIcon' />
             <Link
               to='/profile/mizuki'
               style={{ textDecoration: 'none', color: 'black' }}
             >
-              <span className='sidebarListItemText'>プロフィール</span>
+              <span className='sidebarListItemText'>Profile</span>
             </Link>
           </li>
-          <li className='sidebarListItem'>
+          {/* <li className='sidebarListItem'>
             <Settings className='sidebarIcon' />
             <span className='sidebarListItemText'>設定</span>
-          </li>
+          </li> */}
         </ul>
-        <hr className='sidebarHr' />
-        <ul className='sidebarFriendList'>
+
+        {/*<ul className='sidebarFriendList'>
           {Users.map((u) => (
             <CloseFriend key={u.id} user={u} />
           ))}
-        </ul>
+        </ul>*/}
       </div>
     </div>
   );
