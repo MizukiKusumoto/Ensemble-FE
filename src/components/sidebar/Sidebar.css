@@ -35,6 +35,46 @@
   padding-top: 3px;
 }
 
+/* .active{
+  display: flex;
+  align-items:flex-end;
+  margin-bottom: 10px;
+  padding: 4px 6px;
+  cursor: pointer;
+  background-color: aqua;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 0.3s;
+} */
+
+.sidebarListItemSub {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 2rem;
+  padding: 2px 2px;
+  cursor: pointer;
+  /* box-shadow: 0px 5px 10px 1px #b0cfd9; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 0.3s;
+}
+.sidebarListItemSub:hover {
+  background-color: #a1ccda;
+}
+.sidebarListItemSub::selection{
+  background-color: #ffae00;
+}
+.sidebarIconSub {
+  font-size: 24px !important;
+  margin-right: 10px;
+}
+.sidebarListItemTextSub {
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+
 /* .sidebarFriendList {
   padding: 0;
   margin: 0;
