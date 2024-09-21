@@ -10,6 +10,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { AuthContext } from './state/AuthContext';
+import Matching from './pages/home/matching/Matching';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -17,8 +18,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path='/' element={<Navigate to='/home' />} />
         <Route
-          path='/'
+          path='/home'
           element={user ? <Home /> : <Navigate to='/register' />}
         />
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />

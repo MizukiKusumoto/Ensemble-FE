@@ -13,16 +13,25 @@ import { Users } from '../../dummyData';
 import CloseFriend from '../closeFriend/CloseFriend';
 import { Link } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({ mode, setMode }) {
   return (
     <div className='sidebar'>
       <div className='sidebarWrapper'>
         <ul className='sidebarList'>
           <li className='sidebarListItem'>
             <Home className='sidebarIcon' />
-            <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to='/home' style={{ textDecoration: 'none', color: 'black' }}>
               <span className='sidebarListItemText'>ホーム</span>
             </Link>
+            <span
+              className='sidebarListItemText'
+              onClick={() => setMode('matching')}
+            >
+              マッチング
+            </span>
+            <span className='sidebarListItemText' onClick={() => setMode('no')}>
+              なし
+            </span>
           </li>
           <li className='sidebarListItem'>
             <Search className='sidebarIcon' />
