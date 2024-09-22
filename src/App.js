@@ -11,23 +11,27 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { AuthContext } from './state/AuthContext';
+import { useState } from 'react';
 
 function App() {
   const { user } = useContext(AuthContext);
+  const [sidebarListItemSub, setSidebarListItemSub] = useState("matching");
+  const [homeMode, setHomeMode] = useState("a");
 
   return (
     <Router>
       <Routes>
         <Route
           path='/'
-          element={user ? <Home /> : <Navigate to='/register' />}
+          element={user ? <Home sidebar={sidebarListItemSub} setSidebar={setSidebarListItemSub}
+          homeMode={homeMode} setHomeMode={setHomeMode} /> : <Navigate to='/register' />}
         />
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />
         <Route
           path='/register'
           element={user ? <Navigate to='/' /> : <Register />}
         />
-        <Route path='/profile/:username' element={<Profile />} />
+        <Route path='/profile/:username' element={<Profile sidebar={sidebarListItemSub} setSidebar={setSidebarListItemSub} />} />
       </Routes>
     </Router>
   );

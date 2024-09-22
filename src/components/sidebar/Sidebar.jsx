@@ -1,9 +1,12 @@
 import {
   AttachFile,
+  Edit,
+  Group,
   Home,
   MessageRounded,
   Person,
   Search,
+  TaskAlt,
 } from '@mui/icons-material';
 
 import React from 'react';
@@ -13,30 +16,42 @@ import CloseFriend from '../closeFriend/CloseFriend';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Sidebar() {
-  const [sidebarListItemSub] = React.useState(false);
-  const toggleAlignment = () => {
-    sidebarListItemSub(!sidebarListItemSub);
+export default function Sidebar({sidebar, setSidebar, child, setChild}){
+  const toggleAlignment = (str) => {
+    setSidebar(str);
   }
   return (
     <div className='sidebar'>
       <div className='sidebarWrapper'>
         <ul className='sidebarList'>
-          <li className='sidebarListItem'>
-            <Link onClick={toggleAlignment}  to='/' style={{ textDecoration: 'none', color: 'white'}}>
+          <li className={sidebar == 'matching' ? 'sidebarListItemActive' : 'sidebarListItem'}>
+            <Link onClick={() => toggleAlignment("matching")}  to='/'>
             <div className={'isActive' ? 'active':''}>
-              <Home className='sidebarIcon' />  
+              <Home className='sidebarIcon'/>  
               <span className='sidebarListItemText'>Home</span>
             </div>
             </Link>
           </li>
 
-          <li className='sidebarListItemSub'>
-            <Link   to='/' style={{ textDecoration: 'none', color: 'white' }}>
-            <AttachFile className='sidebarIconSub' />
+          {(sidebar == "matching") && (<>
+          <li className='sidebarListItemSub' style={{ backgroundColor: child == "matching" ? "#ffae00" : "#3fa7c9" }}>
+            <Link onClick={() => setChild("matching")}  to='/' style={{ textDecoration: 'none', color: 'white'}}>
+            <Group className='sidebarIconSub' />
             <span className='sidebarListItemTextSub'>Matching</span>
             </Link>
           </li>
+          <li className='sidebarListItemSub' style={{ backgroundColor: child == "request" ? "#ffae00" : "#3fa7c9" }}>
+            <Link onClick={() => setChild("request")}  to='/' style={{ textDecoration: 'none', color: 'white' }}>
+            <Edit className='sidebarIconSub' />
+            <span className='sidebarListItemTextSub'>Request</span>
+            </Link>
+          </li>
+          <li className='sidebarListItemSub' style={{ backgroundColor: child == "apply" ? "#ffae00" : "#3fa7c9" }}>
+            <Link onClick={() => setChild("apply")}  to='/' style={{ textDecoration: 'none', color: 'white' }}>
+            <TaskAlt className='sidebarIconSub' />
+            <span className='sidebarListItemTextSub'>Apply</span>
+            </Link>
+          </li></>)}
           
           <li className='sidebarListItem'>
             <AttachFile className='sidebarIcon' />
@@ -57,6 +72,7 @@ export default function Sidebar() {
           <li className='sidebarListItem'>
             <Person className='sidebarIcon' />
             <Link
+              onClick={() => toggleAlignment("profile")}
               to='/profile/mizuki'
               style={{ textDecoration: 'none', color: 'black' }}
             >

@@ -7,7 +7,7 @@ import './Profile.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-export default function Profile() {
+export default function Profile({sidebar, setSidebar}) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const username = useParams().username;
@@ -23,7 +23,7 @@ export default function Profile() {
     <>
       <Topbar />
       <div className='profile'>
-        <Sidebar />
+        <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
         <div className='profileRight'>
           <div className='profileRightTop'>
             <div className='profileCover'>
