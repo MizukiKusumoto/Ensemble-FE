@@ -1,19 +1,21 @@
 import React from 'react';
 import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Timeline from '../../components/timeline/Timeline';
-import Rightbar from '../../components/rightbar/Rightbar';
 import './Home.css';
+import Matching from './matching/Matching';
+import { Stack } from '@mui/material';
 
 export default function Home() {
+  const [mode, setMode] = React.useState('matching');
   return (
     <>
       <Topbar />
-      <div className='homeContainer'>
-        <Sidebar />
-        <Timeline />
-        <Rightbar />
-      </div>
+      <Stack direction='row'>
+        <Stack flex={1}>
+          <Sidebar mode={mode} setMode={setMode} />
+        </Stack>
+        <Stack flex={3}>{mode === 'matching' && <Matching />}</Stack>
+      </Stack>
     </>
   );
 }

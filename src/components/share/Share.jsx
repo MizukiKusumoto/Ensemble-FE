@@ -1,14 +1,31 @@
 import React, { useContext, useRef, useState } from 'react';
 import './Share.css';
-import { Analytics, Face, Gif, Image } from '@mui/icons-material';
 import { AuthContext } from '../../state/AuthContext';
 import axios from 'axios';
+import {
+  Autocomplete,
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Grid2,
+  Stack,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@mui/material';
+import { red } from '@mui/material/colors';
 
 export default function Share() {
-  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useContext(AuthContext);
   const desc = useRef();
   const [file, setFile] = useState(null);
+  const [postType, setPostType] = useState('post');
+
+  const handlePostTypeChange = (event, newPostType) => {
+    setPostType(newPostType);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,56 +54,77 @@ export default function Share() {
     desc.current.value = '';
   };
 
+  const tags = [
+    { label: '演劇', value: 'play' },
+    { label: '音楽', value: 'music' },
+    { label: '映画', value: 'movie' },
+    { label: 'ダンス', value: 'dance' },
+    { label: '美術', value: 'art' },
+    { label: '文学', value: 'literature' },
+    { label: '料理', value: 'cooking' },
+    { label: 'スポーツ', value: 'sports' },
+    { label: '旅行', value: 'travel' },
+  ];
+
   return (
-    <div className='share'>
-      <div className='shareWrapper'>
-        <div className='shareTop'>
-          <img
-            src={
-              PUBLIC_FOLDER + (user.profilePicture || '/person/noAvatar.png')
-            }
-            alt=''
-            className='shareProfileImg'
+    <Stack>
+      <h2>新規作成：</h2>
+      <ToggleButtonGroup
+        value={postType}
+        exclusive
+        onChange={handlePostTypeChange}
+        sx={{ paddingBottom: '10px' }}
+      >
+        <ToggleButton value='post'>投稿</ToggleButton>
+        <ToggleButton value='recruit'>募集</ToggleButton>
+      </ToggleButtonGroup>
+      <Card sx={{ padding: '0', width: '100%' }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+              {user.username[0]}
+            </Avatar>
+          }
+          title={'投稿を作成：'}
+          sx={{ padding: '10px 10px 0 10px', color: 'gray' }}
+        />
+        <CardContent sx={{ padding: '0px 10px 0 50px' }}>
+          <TextField
+            inputRef={desc}
+            multiline
+            minRows={1}
+            sx={{
+              width: '100%',
+              '& fieldset': { border: 'none' },
+            }}
           />
-          <input
-            type='text'
-            className='shareInput'
-            placeholder='今何してるの？'
-            ref={desc}
-          />
-        </div>
-        <hr className='shareHr' />
-        <form className='shareButtons' onSubmit={(e) => handleSubmit(e)}>
-          <div className='shareOptions'>
-            <label className='shareOption' htmlFor='file'>
-              <Image className='shareIcon' htmlColor='blue' />
-              <span className='shareOptionText'>写真</span>
-              <input
-                type='file'
-                id='file'
-                accept='.png, .jpeg, .jpg'
-                style={{ display: 'none' }}
-                onChange={(e) => setFile(e.target.files[0])}
+          <Grid2 container>
+            <Grid2 size={9}>
+              <Autocomplete
+                multiple
+                id='tags-outlined'
+                options={tags}
+                getOptionLabel={(option) => option.label}
+                filterSelectedOptions
+                renderInput={(params) => <TextField {...params} />}
               />
-            </label>
-            <div className='shareOption'>
-              <Gif className='shareIcon' htmlColor='hotpink' />
-              <span className='shareOptionText'>GIF</span>
-            </div>
-            <div className='shareOption'>
-              <Face className='shareIcon' htmlColor='green' />
-              <span className='shareOptionText'>気持ち</span>
-            </div>
-            <div className='shareOption'>
-              <Analytics className='shareIcon' htmlColor='red' />
-              <span className='shareOptionText'>投票</span>
-            </div>
-          </div>
-          <button className='shareButton' type='submit'>
-            投稿
-          </button>
-        </form>
-      </div>
-    </div>
+            </Grid2>
+            <Grid2 size={1}>
+              <Box />
+            </Grid2>
+            <Grid2 size={2}>
+              <button
+                className='shareButton'
+                type='submit'
+                style={{ height: '100%' }}
+                onClick={(e) => handleSubmit(e)}
+              >
+                投稿する
+              </button>
+            </Grid2>
+          </Grid2>
+        </CardContent>
+      </Card>
+    </Stack>
   );
 }
