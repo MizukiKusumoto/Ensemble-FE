@@ -25,9 +25,9 @@ export default function Sidebar({sidebar, setSidebar, child, setChild}){
       <div className='sidebarWrapper'>
         <ul className='sidebarList'>
           <li className={sidebar == 'matching' ? 'sidebarListItemActive' : 'sidebarListItem'}>
-            <Link onClick={() => toggleAlignment("matching")}  to='/'>
-            <div className={'isActive' ? 'active':''}>
-              <Home className='sidebarIcon'/>  
+            <Link onClick={() => toggleAlignment("matching")}  to='/' style={{ textDecoration: 'none', color: sidebar == 'matching' ? 'white' : 'black'}}>
+            <div>
+              <Home className='sidebarIcon'/>
               <span className='sidebarListItemText'>Home</span>
             </div>
             </Link>

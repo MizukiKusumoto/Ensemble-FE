@@ -37,6 +37,7 @@
   transition: all 0.3s;
   background-color: #ffae00;
 }
+
 .sidebarListItem:hover {
   background-color: #a1ccda;
 }
