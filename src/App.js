@@ -3,7 +3,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Profile from './pages/profile/Profile';
 import Register from './pages/register/Register';
-import "./App.css";
+import './App.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,23 +15,39 @@ import { useState } from 'react';
 
 function App() {
   const { user } = useContext(AuthContext);
-  const [sidebarListItemSub, setSidebarListItemSub] = useState("matching");
-  const [homeMode, setHomeMode] = useState("a");
+  const [sidebarListItemSub, setSidebarListItemSub] = useState('home');
 
   return (
     <Router>
       <Routes>
+        <Route path='/' element={<Navigate to='/home' />} />
         <Route
-          path='/'
-          element={user ? <Home sidebar={sidebarListItemSub} setSidebar={setSidebarListItemSub}
-          homeMode={homeMode} setHomeMode={setHomeMode} /> : <Navigate to='/register' />}
+          path='/home'
+          element={
+            user ? (
+              <Home
+                sidebar={sidebarListItemSub}
+                setSidebar={setSidebarListItemSub}
+              />
+            ) : (
+              <Navigate to='/register' />
+            )
+          }
         />
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />
         <Route
           path='/register'
           element={user ? <Navigate to='/' /> : <Register />}
         />
-        <Route path='/profile/:username' element={<Profile sidebar={sidebarListItemSub} setSidebar={setSidebarListItemSub} />} />
+        <Route
+          path='/profile/:username'
+          element={
+            <Profile
+              sidebar={sidebarListItemSub}
+              setSidebar={setSidebarListItemSub}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
