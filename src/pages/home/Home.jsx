@@ -11,7 +11,7 @@ export default function Home({ sidebar, setSidebar }) {
   const [mode, setMode] = useState('matching');
   return (
     <>
-      <Topbar />
+      <Topbar sidebar={sidebar} />
       <Stack direction='row'>
         <Stack flex={1}>
           <Sidebar

@@ -53,7 +53,7 @@ export default function Recruit() {
                 sx={{ bgcolor: red[500], marginRight: '15px' }}
                 aria-label='recipe'
               >
-                {user.username[0]}
+                {user.name[0]}
               </Avatar>
               <Stack direction='column' spacing={0}>
                 <Stack direction='column' spacing={0}>
@@ -66,7 +66,7 @@ export default function Recruit() {
                       fontSize: '30px',
                     }}
                   >
-                    {user.username}
+                    {user.name}
                   </Typography>
                   <Typography
                     sx={{

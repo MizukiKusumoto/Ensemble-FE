@@ -31,7 +31,7 @@ export default function Share() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
-      userId: user._id,
+      userId: user.id,
       desc: desc.current.value,
     };
     if (file) {
@@ -71,7 +71,7 @@ export default function Share() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-              {user.username[0]}
+              {user.name[0]}
             </Avatar>
           }
           title={'投稿を作成：'}

@@ -31,7 +31,7 @@ export default function NewRequest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
-      userId: user._id,
+      userId: user.id,
       desc: desc.current.value,
     };
     if (file) {

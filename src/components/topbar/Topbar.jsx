@@ -3,12 +3,19 @@ import React, { useContext } from 'react';
 import './Topbar.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../state/AuthContext';
-import { Box } from "@mui/material";
+import { Box, Button } from '@mui/material';
+import { logoutCall } from '../../actionCalls';
 
-export default function Topbar() {
-  const { user } = useContext(AuthContext);
-  const { username } = useContext(AuthContext);
+export default function Topbar({ sidebar }) {
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const isoString = user.latest_login;
+  const datePart = isoString.split('T')[0];
+  const timePart = isoString.split('T')[1].split('.')[0];
   // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const handleLogout = () => {
+    logoutCall(dispatch);
+  };
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
@@ -17,22 +24,25 @@ export default function Topbar() {
           <span className='logo2'>connect with the world.</span>
         </Link>
       </div>
-      {/* <div className='topbarCenter'>
-        <div className='searchbar'>
-          <Search className='searchIcon' />
-          <input
-            type='text'
-            className='searchInput'
-            placeholder='探し物はなんですか？'
-          />
-        </div>
-      </div> */}
       <div className='topbarRight'>
-        <div className="rectangle_border_user">
-          <Box sx={{whiteSpace:"pre-wrap"}}>{'user:\n'+user.username}</Box>
+        {sidebar === 'home' && (
+          <Button
+            variant='contained'
+            color='secondary'
+            href='/login'
+            onClick={() => handleLogout()}
+            style={{ marginRight: '10px' }}
+          >
+            Logout
+          </Button>
+        )}
+        <div className='rectangle_border_user'>
+          <Box sx={{ whiteSpace: 'pre-wrap' }}>{'user:\n' + user.name}</Box>
         </div>
-        <div className="rectangle_border_loginDate">
-          <Box sx={{whiteSpace:"pre-wrap"}}>{'latest login:\n'+user.loginDate+'\n'+user.loginTime}</Box>
+        <div className='rectangle_border_loginDate'>
+          <Box sx={{ whiteSpace: 'pre-wrap' }}>
+            {'latest login:\n' + datePart + '\n' + timePart}
+          </Box>
         </div>
         {/* <div className='topbarIconItems'>
           <div className='topbarIconItem'>

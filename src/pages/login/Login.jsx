@@ -1,7 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import './Login.css';
 import { loginCall } from '../../actionCalls';
 import { AuthContext } from '../../state/AuthContext';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   const email = useRef();
@@ -16,7 +17,11 @@ export default function Login() {
     );
   };
 
-  console.log(user);
+  useEffect(() => {
+    if (error) {
+      alert('ログインに失敗しました');
+    }
+  }, [error]);
 
   return (
     <div className='login'>
@@ -40,12 +45,18 @@ export default function Login() {
               placeholder='パスワード'
               className='loginInput'
               required
-              minLength='6'
+              minLength='8'
               ref={password}
             />
             <button className='loginButton'>ログイン</button>
             <span className='loginForgot'>パスワードを忘れた方へ</span>
-            <button className='loginRegisterButton'>アカウント作成</button>
+            <Link
+              to='/register'
+              className='loginRegisterButtonWrapper'
+              style={{ textDecoration: 'none' }}
+            >
+              <button className='loginRegisterButton'>アカウント作成</button>
+            </Link>
           </form>
         </div>
       </div>

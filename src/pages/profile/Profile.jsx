@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Timeline from '../../components/timeline/Timeline';
 import './Profile.css';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import {
   Autocomplete,
   Avatar,
@@ -17,11 +15,11 @@ import {
 import { Settings } from '@mui/icons-material';
 import { tags } from '../../App';
 import Recruit from '../../components/recruit/Recruit';
+import { AuthContext } from '../../state/AuthContext';
 
 export default function Profile({ sidebar, setSidebar }) {
+  const { user } = useContext(AuthContext);
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [user, setUser] = useState({});
-  const username = useParams().username;
   const [open, setOpen] = React.useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -32,13 +30,6 @@ export default function Profile({ sidebar, setSidebar }) {
     setOpen(false);
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get(`/users?username=${username}`);
-      setUser(response.data);
-    };
-    fetchUser();
-  }, [username]);
   return (
     <>
       <Topbar />
@@ -49,7 +40,7 @@ export default function Profile({ sidebar, setSidebar }) {
         <Stack flex={3}>
           <Box className='profileContainer' marginBottom={10}>
             <img
-              src={user.coverPicture || PUBLIC_FOLDER + 'person/noCover.png'}
+              src={user.coverPicture || PUBLIC_FOLDER + 'image.png'}
               alt=''
               className='profileCoverImg'
             />
@@ -59,16 +50,15 @@ export default function Profile({ sidebar, setSidebar }) {
               alignItems='end'
             >
               <Avatar
-                src={
-                  user.profilePicture || PUBLIC_FOLDER + 'person/noAvatar.png'
-                }
+                src={user.profilePicture || PUBLIC_FOLDER + 'person.png'}
                 alt=''
                 className='profileUserImg'
+                sx={{ width: '50px', height: '50px' }}
               />
-              <h2>{user.username}Mizuki Kusumoto</h2>
+              <h2>{user.name}</h2>
               <Stack direction='row' marginLeft={5} marginBottom='3px'>
-                <p>利用開始：2024/5/12</p>
-                <p>アクティブランク：Rank3</p>
+                <p>利用開始：{user.created_at}</p>
+                <p>　アクティブランク：Rank{user.activity}</p>
               </Stack>
               <Button
                 onClick={handleOpen}
