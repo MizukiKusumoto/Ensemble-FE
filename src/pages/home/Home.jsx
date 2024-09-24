@@ -5,6 +5,7 @@ import './Home.css';
 import { useState } from 'react';
 import Matching from './matching/Matching';
 import { Stack } from '@mui/material';
+import Request from './request/Request';
 
 export default function Home({ sidebar, setSidebar }) {
   const [mode, setMode] = useState('matching');
@@ -20,7 +21,17 @@ export default function Home({ sidebar, setSidebar }) {
             setChild={setMode}
           />
         </Stack>
-        <Stack flex={3}>{mode === 'matching' && <Matching />}</Stack>
+        {mode === 'matching' && (
+          <Stack flex={3}>
+            <Matching />
+          </Stack>
+        )}
+        {mode === 'request' && (
+          <Stack flex={3}>
+            <Request />
+          </Stack>
+        )}
+        {mode === 'apply' && <Stack flex={3}></Stack>}
       </Stack>
     </>
   );

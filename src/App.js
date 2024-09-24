@@ -54,3 +54,15 @@ function App() {
 }
 
 export default App;
+
+export const tags = [
+  { label: '演劇', value: 'play' },
+  { label: '音楽', value: 'music' },
+  { label: '映画', value: 'movie' },
+  { label: 'ダンス', value: 'dance' },
+  { label: '美術', value: 'art' },
+  { label: '文学', value: 'literature' },
+  { label: '料理', value: 'cooking' },
+  { label: 'スポーツ', value: 'sports' },
+  { label: '旅行', value: 'travel' },
+];

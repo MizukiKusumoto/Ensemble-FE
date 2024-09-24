@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import './Share.css';
-import { AuthContext } from '../../state/AuthContext';
+import { AuthContext } from '../../../../../state/AuthContext';
 import axios from 'axios';
 import {
   Autocomplete,
@@ -16,6 +16,7 @@ import {
   ToggleButtonGroup,
 } from '@mui/material';
 import { red } from '@mui/material/colors';
+import { tags } from '../../../../../App';
 
 export default function Share() {
   const { user } = useContext(AuthContext);
@@ -53,18 +54,6 @@ export default function Share() {
     }
     desc.current.value = '';
   };
-
-  const tags = [
-    { label: '演劇', value: 'play' },
-    { label: '音楽', value: 'music' },
-    { label: '映画', value: 'movie' },
-    { label: 'ダンス', value: 'dance' },
-    { label: '美術', value: 'art' },
-    { label: '文学', value: 'literature' },
-    { label: '料理', value: 'cooking' },
-    { label: 'スポーツ', value: 'sports' },
-    { label: '旅行', value: 'travel' },
-  ];
 
   return (
     <Stack>

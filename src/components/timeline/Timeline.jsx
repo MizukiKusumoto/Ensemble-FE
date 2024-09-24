@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Timeline.css';
-import Share from '../share/Share';
 import Post from '../post/Post';
 import axios from 'axios';
 import { AuthContext } from '../../state/AuthContext';
@@ -24,7 +23,6 @@ export default function Timeline({ username }) {
   return (
     <div className='timeline'>
       <div className='timelineWrapper'>
-        <Share />
         {posts.map((p) => (
           <Post key={p._id} post={p} />
         ))}

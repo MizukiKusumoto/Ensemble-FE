@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack } from '@mui/material';
-import MatchedUser from '../../../components/matchedUser/MatchedUser';
-import Share from '../../../components/share/Share';
+import MatchedUser from './components/matchedUser/MatchedUser';
+import Share from './components/share/Share';
 
 export default function Matching() {
   return (
