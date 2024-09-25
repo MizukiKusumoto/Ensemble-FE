@@ -9,8 +9,8 @@ import { logoutCall } from '../../actionCalls';
 export default function Topbar({ sidebar }) {
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
   const isoString = user.latest_login;
-  const datePart = isoString.split('T')[0];
-  const timePart = isoString.split('T')[1].split('.')[0];
+  const datePart = isoString ? isoString.split('T')[0] : '';
+  const timePart = isoString ? isoString.split('T')[1].split('.')[0] : '';
   // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleLogout = () => {

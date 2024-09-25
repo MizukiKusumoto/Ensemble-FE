@@ -71,7 +71,7 @@ export default function Share() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-              {user.name[0]}
+              {user.name ? user.name[0] : ''}
             </Avatar>
           }
           title={'投稿を作成：'}
