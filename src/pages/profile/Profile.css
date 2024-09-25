@@ -9,13 +9,13 @@
 .profileInfoContainer {
   position: absolute;
   top: 240px;
+  height: 50px;
 }
 .profileUserImg {
   position: absolute;
-  width: 150px;
-  height: 150px;
   border-radius: 50%;
-  margin: 0 20px 0 50px;
+  top: 0px;
+  left: 40px;
 }
 .settings {
   position: absolute;

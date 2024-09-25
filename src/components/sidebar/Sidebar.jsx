@@ -102,12 +102,21 @@ export default function Sidebar({ sidebar, setSidebar, child, setChild }) {
             <Bookmark className='sidebarIcon' />
             <span className='sidebarListItemText'>ブックマーク</span>
           </li> */}
-          <li className='sidebarListItem'>
+          <li
+            className={
+              sidebar === 'profile'
+                ? 'sidebarListItemActive'
+                : 'sidebarListItem'
+            }
+          >
             <Person className='sidebarIcon' />
             <Link
               onClick={() => toggleAlignment('profile')}
-              to='/profile/mizuki'
-              style={{ textDecoration: 'none', color: 'black' }}
+              to='/profile'
+              style={{
+                textDecoration: 'none',
+                color: sidebar === 'profile' ? 'white' : 'black',
+              }}
             >
               <span className='sidebarListItemText'>Profile</span>
             </Link>

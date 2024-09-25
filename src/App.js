@@ -40,7 +40,7 @@ function App() {
           element={user ? <Navigate to='/' /> : <Register />}
         />
         <Route
-          path='/profile/:username'
+          path='/profile'
           element={
             <Profile
               sidebar={sidebarListItemSub}
